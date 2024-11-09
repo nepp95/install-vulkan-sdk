@@ -66,7 +66,6 @@ runs:
       if: ${{ runner.os == 'Windows' }}
       shell: cmd
       run: |
-        # install
         vulkan_sdk.exe --root $VULKAN_SDK --accept-licenses --default-answer --confirm-command install
 
     - name: Install Vulkan SDK (Linux/Mac)
