@@ -62,7 +62,15 @@ runs:
         . $GITHUB_ACTION_PATH/vulkan_prebuilt_helpers.sh
         download_vulkan_installer ${VULKAN_SDK_PLATFORM}
 
-    - name: Install Vulkan SDK
+    - name: Install Vulkan SDK (Windows)
+      if: ${{ ${VULKAN_SDK_PLATFORM} == 'windows' }}
+      shell: cmd
+      run: |
+        # install
+        vulkan_sdk.exe --root $VULKAN_SDK --accept-licenses --default-answer --confirm-command install
+
+    - name: Install Vulkan SDK (Linux/Mac)
+      if: ${{ ${VULKAN_SDK_PLATFORM} != 'windows' }}
       shell: bash
       run: |
         # install
